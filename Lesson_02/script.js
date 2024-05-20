@@ -46,18 +46,20 @@ class Layer {
     }
 }
 
-const layer1 = new Layer(backgroundLayer1, 0.5);
-const layer2 = new Layer(backgroundLayer2, 0.5);
-const layer3 = new Layer(backgroundLayer3, 0.5);
-const layer4 = new Layer(backgroundLayer4, 0.5);
+const layer1 = new Layer(backgroundLayer1, 0.2);
+const layer2 = new Layer(backgroundLayer2, .6);
+const layer3 = new Layer(backgroundLayer3, 1);
+const layer4 = new Layer(backgroundLayer4, 1.5 );
 const layer5 = new Layer(backgroundLayer5, 2);
+
+const gameObjects = [layer1, layer2, layer3, layer4, layer5];
 
 function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    layer4.update()
-    layer4.draw();
-    layer5.update()
-    layer5.draw();
+    gameObjects.forEach(object => {
+        object.update();
+        object.draw();
+    })
 
     requestAnimationFrame(animate);
 }
