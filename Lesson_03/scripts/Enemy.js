@@ -1,11 +1,13 @@
+
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 
 class Enemy {
-    constructor(cw, ch, gameFrame) {
+    constructor(gameFrame, enemyImage) {
+
         this.gameFrame = gameFrame;
         this.image = new Image();
-        this.image.src = './assets/enemy1.png'
+        this.image.src = enemyImage
         this.width = 100
         this.height = 100
         //this.speed = Math.random() * 4 - 2;
@@ -14,8 +16,8 @@ class Enemy {
         this.width = this.spriteWidth / 2.5;
         this.height = this.spriteHeight / 2.5;
 
-        this.x = Math.random() * (cw - this.width);
-        this.y = Math.random() * (ch - this.height);
+        this.x = Math.random() * (canvas.width - this.width);
+        this.y = Math.random() * (canvas.height - this.height);
 
 
         this.frame = 0;
