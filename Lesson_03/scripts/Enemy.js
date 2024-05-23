@@ -1,6 +1,6 @@
 
 class Enemy {
-    constructor(enemyImage) {
+    constructor(canvas, enemyImage) {
 
         this.gameFrame = gameFrame;
         this.image = new Image();
@@ -16,6 +16,7 @@ class Enemy {
         this.x = Math.random() * (canvas.width - this.width);
         this.y = Math.random() * (canvas.height - this.height);
 
+        this.ctx = canvas.getContext('2d');
 
         this.frame = 0;
         this.flapSpeed = Math.floor(Math.random() * 3 + 1);
@@ -30,6 +31,6 @@ class Enemy {
         }
     }
     draw(){
-        ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,  this.x, this.y, this.width, this.height);
+        this.ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,  this.x, this.y, this.width, this.height);
     }
 }
