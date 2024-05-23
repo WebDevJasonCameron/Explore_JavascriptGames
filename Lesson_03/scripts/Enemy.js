@@ -1,9 +1,6 @@
 
-const canvas = document.getElementById("canvas1");
-const ctx = canvas.getContext("2d");
-
 class Enemy {
-    constructor(gameFrame, enemyImage) {
+    constructor(enemyImage) {
 
         this.gameFrame = gameFrame;
         this.image = new Image();
@@ -36,5 +33,3 @@ class Enemy {
         ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,  this.x, this.y, this.width, this.height);
     }
 }
-
-export default Enemy ;
