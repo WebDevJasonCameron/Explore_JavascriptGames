@@ -1,10 +1,10 @@
 
-class Enemy {
-    constructor(canvas, enemyImage) {
+class Enemy2 {
+    constructor(canvas) {
 
         this.gameFrame = gameFrame;
         this.image = new Image();
-        this.image.src = enemyImage
+        this.image.src = './assets/enemy1.png'
         this.width = 100
         this.height = 100
         //this.speed = Math.random() * 4 - 2;
