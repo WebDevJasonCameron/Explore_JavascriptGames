@@ -11,6 +11,12 @@ const ctx4 = canvas4.getContext("2d");
 
 canvas1.width = 500;
 canvas1.height = 1000;
+canvas2.width = 500;
+canvas2.height = 1000;
+canvas3.width = 500;
+canvas3.height = 1000;
+canvas4.width = 500;
+canvas4.height = 1000;
 
 const CANVAS_WIDTH = 500;
 const CANVAS_HEIGHT = 1000;
@@ -26,18 +32,32 @@ let gameFrame = 0;
 for (let i = 0; i < numberOfEnemies; i++) {
     enemiesArray1.push(new Enemy1(canvas1));
     enemiesArray2.push(new Enemy2(canvas2));
-    // enemiesArray2.push(new Enemy3(canvas3'));
-    // enemiesArray2.push(new Enemy4(canvas4'));
+    // enemiesArray3.push(new Enemy3(canvas3));
+    // enemiesArray2.push(new Enemy4(canvas4));
 }
 
 function animate(){
     ctx1.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+    ctx2.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+    ctx3.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+    ctx4.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT );
+
     enemiesArray1.forEach(enemy => {
         enemy.update();
         enemy.draw();
     })
 
     enemiesArray2.forEach(enemy => {
+        enemy.update();
+        enemy.draw();
+    })
+
+    enemiesArray3.forEach(enemy => {
+        enemy.update();
+        enemy.draw();
+    })
+
+    enemiesArray4.forEach(enemy => {
         enemy.update();
         enemy.draw();
     })

@@ -1,10 +1,10 @@
 
-class Enemy2 {
+class Enemy3 {
     constructor(canvas) {
 
         this.image = new Image();
-        this.image.src = './assets/enemy2.png'
-        this.speed = Math.random() * 4 + 2;
+        this.image.src = './assets/enemy3.png'
+        //this.speed = Math.random() * 4 - 2;
         this.spriteWidth = 266;
         this.spriteHeight = 188;
 
@@ -21,9 +21,8 @@ class Enemy2 {
     }
 
     update(){
-        this.x -= this.speed;
-        //this.y += Math.random() * 5 - 2.5;
-        //if (this.x + this.width < 0) this.x = canvas.width;
+        this.x += Math.random() * 5 - 2.5;
+        this.y += Math.random() * 5 - 2.5;
         // animate sprites
         if (gameFrame % this.flapSpeed === 0) {
             this.frame > 4 ? this.frame = 0 : this.frame++;

@@ -2,11 +2,8 @@
 class Enemy1 {
     constructor(canvas) {
 
-        this.gameFrame = gameFrame;
         this.image = new Image();
         this.image.src = './assets/enemy1.png'
-        this.width = 100
-        this.height = 100
         //this.speed = Math.random() * 4 - 2;
         this.spriteWidth = 293;
         this.spriteHeight = 155;
@@ -26,7 +23,7 @@ class Enemy1 {
         this.x += Math.random() * 5 - 2.5;
         this.y += Math.random() * 5 - 2.5;
         // animate sprites
-        if (this.gameFrame % this.flapSpeed === 0) {
+        if (gameFrame % this.flapSpeed === 0) {
             this.frame > 4 ? this.frame = 0 : this.frame++;
         }
     }
