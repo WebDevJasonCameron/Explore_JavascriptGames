@@ -1,4 +1,3 @@
-
 class Enemy3 {
     constructor() {
 

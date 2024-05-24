@@ -33,7 +33,7 @@ for (let i = 0; i < numberOfEnemies; i++) {
     enemiesArray1.push(new Enemy1());
     enemiesArray2.push(new Enemy2());
     enemiesArray3.push(new Enemy3());
-    // enemiesArray4.push(new Enemy4());
+    enemiesArray4.push(new Enemy4());
 }
 
 function animate(){
@@ -61,7 +61,6 @@ function animate(){
         enemy.update();
         enemy.draw();
     })
-
 
     gameFrame++;
     requestAnimationFrame(animate);
