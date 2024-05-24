@@ -21,7 +21,7 @@ canvas4.height = 1000;
 const CANVAS_WIDTH = 500;
 const CANVAS_HEIGHT = 1000;
 
-const numberOfEnemies = 100;
+const numberOfEnemies = 20;
 const enemiesArray1 = [];
 const enemiesArray2 = [];
 const enemiesArray3 = [];
@@ -30,10 +30,10 @@ const enemiesArray4 = [];
 let gameFrame = 0;
 
 for (let i = 0; i < numberOfEnemies; i++) {
-    enemiesArray1.push(new Enemy1(canvas1));
-    enemiesArray2.push(new Enemy2(canvas2));
-    // enemiesArray3.push(new Enemy3(canvas3));
-    // enemiesArray2.push(new Enemy4(canvas4));
+    enemiesArray1.push(new Enemy1());
+    enemiesArray2.push(new Enemy2());
+    enemiesArray3.push(new Enemy3());
+    // enemiesArray4.push(new Enemy4());
 }
 
 function animate(){

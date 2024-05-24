@@ -1,6 +1,6 @@
 
 class Enemy2 {
-    constructor(canvas) {
+    constructor() {
 
         this.image = new Image();
         this.image.src = './assets/enemy2.png'
@@ -11,19 +11,23 @@ class Enemy2 {
         this.width = this.spriteWidth / 2.5;
         this.height = this.spriteHeight / 2.5;
 
-        this.x = Math.random() * (canvas.width - this.width);
-        this.y = Math.random() * (canvas.height - this.height);
+        this.x = Math.random() * (canvas2.width - this.width);
+        this.y = Math.random() * (canvas2.height - this.height);
 
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas2.getContext('2d');
 
-        this.frame = 0;
+        this.frame = 0;                                             //   Movements
         this.flapSpeed = Math.floor(Math.random() * 3 + 1);
+        this.angle = Math.random() * 5;                             //   Wave pattern
+        this.angleSpeed = Math.random() * 0.2;
+        this.curve = Math.random() * 7;
     }
 
     update(){
         this.x -= this.speed;
-        //this.y += Math.random() * 5 - 2.5;
-        //if (this.x + this.width < 0) this.x = canvas.width;
+        this.y += this.curve * Math.sin(this.angle);
+        this.angle += this.angleSpeed;
+        if (this.x + this.width < 0) this.x = canvas2.width;
         // animate sprites
         if (gameFrame % this.flapSpeed === 0) {
             this.frame > 4 ? this.frame = 0 : this.frame++;

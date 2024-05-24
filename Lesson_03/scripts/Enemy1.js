@@ -1,6 +1,6 @@
 
 class Enemy1 {
-    constructor(canvas) {
+    constructor() {
 
         this.image = new Image();
         this.image.src = './assets/enemy1.png'
@@ -10,10 +10,10 @@ class Enemy1 {
         this.width = this.spriteWidth / 2.5;
         this.height = this.spriteHeight / 2.5;
 
-        this.x = Math.random() * (canvas.width - this.width);
-        this.y = Math.random() * (canvas.height - this.height);
+        this.x = Math.random() * (canvas1.width - this.width);
+        this.y = Math.random() * (canvas1.height - this.height);
 
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas1.getContext('2d');
 
         this.frame = 0;
         this.flapSpeed = Math.floor(Math.random() * 3 + 1);
