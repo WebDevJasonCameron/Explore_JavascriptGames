@@ -6,7 +6,6 @@ canvas.height = 700;
 const explosions = [];
 
 let canvasPosition = canvas.getBoundingClientRect();
-console.log(canvasPosition);
 
 class Explosion {
     constructor(x, y) {
@@ -26,7 +25,6 @@ class Explosion {
         this.frame++;
     }
     draw(){
-                    // image, sourceX, sy, sw, sh, destinationX, dy, dw, dh
         ctx.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
 }
@@ -34,5 +32,5 @@ class Explosion {
 window.addEventListener('click', function(e){
     console.log(e);
     ctx.fillStyle = 'white';
-    ctx.fillRect(e.x, e.y, 50, 50)
-})
+    ctx.fillRect(e.x - canvasPosition.left - 25, e.y - canvasPosition.top - 25, 50, 50)     // Centered mouse click
+});
