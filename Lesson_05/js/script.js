@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let score = 0;
+
 let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0
@@ -39,7 +41,12 @@ class Raven {
     }
 
     update(deltaTime){
+        if (this.y < 0 || this.y > canvas.height - this.height){
+            this.directionY = this.directionY * -1;
+        }
+
         this.x -= this.directionX;
+        this.y += this.directionY;
 
         if (this.x < 0 - this.width) this.markedForDeletion = true;
 
@@ -64,6 +71,11 @@ class Raven {
             this.width,
             this.height);
     }
+}
+
+function drawScore(){
+    ctx.fillStyle = 'black';
+    ctx.fillText('Score: ' + score, 50, 75);
 }
 
 
