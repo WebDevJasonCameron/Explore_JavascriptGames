@@ -29,6 +29,8 @@ class Raven {
             Math.floor(Math.random() * 255),
             Math.floor(Math.random() * 255)]
         this.color = 'rgb(' + this.randomColors[0] + ',' + this.randomColors[1] + ',' + this.randomColors[2] + ')';
+
+        this.hasTrail = Math.random() > 0.5;
     }
 
     update(deltaTime){
@@ -47,7 +49,19 @@ class Raven {
             if (this.frame > this.maxframe) this.frame = 0;
             else this.frame++;
             this.timeSinceFlap = 0;
+
+            if (this.hasTrail) {
+                particles.push(new Particle(
+                                                this.x,
+                                                this.y,
+                                                this.width,
+                                                this.color)
+                );
+            }
+
         }
+
+        if (this.x < 0 -this.width) gameOver = true;
 
     }
 
