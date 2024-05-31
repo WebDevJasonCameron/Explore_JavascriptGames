@@ -9,11 +9,17 @@ class Ghost extends Enemy {
         this.height = this.spriteHeight / 2;
 
         this.x = this.game.width;
-        this.y = Math.random() * this.game.height;
+        this.y = Math.random() * this.game.height * 0.6;        // Take only 60% of top space
 
-        this.vx = Math.random() * 0.2 + 0.1;        // vx = vertical x (speed)
+        this.vx = Math.random() * 0.2 + 0.1;                    // vx = vertical x (speed)
 
         this.image = ghost;
+    }
 
+    draw(ctx){
+        ctx.save()
+        ctx.globalAlpha = 0.5;
+        super.draw(ctx);
+        ctx.restore()
     }
 }

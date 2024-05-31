@@ -33,6 +33,6 @@ class Game {
         if (randomEnemy === 'worm') this.enemies.push(new Worm(this));
         else if (randomEnemy === 'ghost') this.enemies.push(new Ghost(this));
 
-        this.enemies.sort((a, b) => a.y - b.y);
+        // this.enemies.sort((a, b) => a.y - b.y);
     }
 }

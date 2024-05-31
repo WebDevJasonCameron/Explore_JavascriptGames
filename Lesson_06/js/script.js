@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = 500;
     canvas.height = 800;
 
-    // Removed Game and Enemy classes.  Placed in own js file.
+    // Classes moved external js
 
 
     const game = new Game(ctx, canvas.width, canvas.height);
