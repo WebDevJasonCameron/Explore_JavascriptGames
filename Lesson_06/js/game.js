@@ -7,7 +7,7 @@ class Game {
         this.enemies = [];
         this.enemyInterval = 500;
         this.enemyTimer = 0;
-        this.enemyTypes = ['worm', 'ghost']
+        this.enemyTypes = ['worm', 'ghost', 'spider']
     }
 
     update(deltaTime){
@@ -32,6 +32,9 @@ class Game {
 
         if (randomEnemy === 'worm') this.enemies.push(new Worm(this));
         else if (randomEnemy === 'ghost') this.enemies.push(new Ghost(this));
+        else if (randomEnemy === 'spider') this.enemies.push(new Spider(this));
+
+        console.log(this.enemies);
 
         // this.enemies.sort((a, b) => a.y - b.y);
     }
