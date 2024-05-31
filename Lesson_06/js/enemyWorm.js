@@ -11,6 +11,7 @@ class Worm extends Enemy {
         this.x = this.game.width;
         this.y = Math.random() * this.game.height;
 
+        this.vx = Math.random() * 0.1 + 0.1;        // vx = vertical x (speed)
 
         this.image = worm;
 

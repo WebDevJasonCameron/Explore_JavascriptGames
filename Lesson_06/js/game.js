@@ -5,7 +5,7 @@ class Game {
         this.height = height;
 
         this.enemies = [];
-        this.enemyInterval = 1000;
+        this.enemyInterval = 100;
         this.enemyTimer = 0;
     }
 
@@ -19,7 +19,7 @@ class Game {
             this.enemyTimer += deltaTime;
         }
 
-        this.enemies.forEach(object => object.update());
+        this.enemies.forEach(object => object.update(deltaTime));
     }
 
     draw(){
@@ -28,5 +28,7 @@ class Game {
 
     #addNewEnemy(){
         this.enemies.push(new Worm(this))
+        this.enemies.sort((a, b) => a.y - b.y);
+        console.log(this.enemies)
     }
 }

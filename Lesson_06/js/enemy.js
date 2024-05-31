@@ -1,13 +1,12 @@
 class Enemy {
     constructor(game){
         this.game = game;
-        console.log(game)
 
         this.markedForDeletion = false;
     }
 
-    update(){
-        this.x--;
+    update(deltaTime){
+        this.x -= this.vx * deltaTime;
         // remove enemies
         if (this.x < 0 - this.width) this.markedForDeletion = true;
     }
