@@ -7,5 +7,14 @@ window.addEventListener('load', () => {
     // Loading Classes from other js files
 
 
+    function handleEnemies(){
 
+    }
+
+    function displayStatusText(){
+
+    }
+
+    function animate(){
+    }
 })
