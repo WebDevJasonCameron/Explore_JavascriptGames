@@ -15,6 +15,8 @@ window.addEventListener('load', () => {
 
     }
 
+    const input = new InputHandler()
+
     function animate(){
     }
 })
