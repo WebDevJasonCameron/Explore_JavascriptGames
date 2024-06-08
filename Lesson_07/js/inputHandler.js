@@ -4,8 +4,6 @@ class InputHandler {
 
         window.addEventListener('keydown', (e) =>{
 
-            console.log(e)
-
             if (    (e.key === 'ArrowDown' ||
                     e.key === 'ArrowUp' ||
                     e.key === 'ArrowLeft' ||

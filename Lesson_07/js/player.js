@@ -19,9 +19,9 @@ class Player {
     update(input){
         // HORIZONTAL
         this.x += this.speed;
-        if (input.keys.indexOf('ArrowLeft') > - 1){
+        if (input.keys.indexOf('ArrowRight') > - 1){
             this.speed = 5;
-        } else if(input.keys.indexOf('ArrowRight') > -1){
+        } else if(input.keys.indexOf('ArrowLeft') > -1){
             this.speed = -5;
         } else {
             this.speed = 0;
