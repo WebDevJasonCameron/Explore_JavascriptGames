@@ -14,25 +14,51 @@ class Player {
         this.frameY = 0;
 
         this.speed = 0;
+
+        this.vy = 0;
+        this.weight = 1;
     }
 
     update(input){
-        // HORIZONTAL
-        this.x += this.speed;
+
+        // KEYBOARD
         if (input.keys.indexOf('ArrowRight') > - 1){
             this.speed = 5;
-        } else if(input.keys.indexOf('ArrowLeft') > -1){
+        } else if(input.keys.indexOf('ArrowLeft') > -1) {
             this.speed = -5;
+        } else if (input.keys.indexOf('ArrowUp') > -1) {
+            this.vy -= 5;
         } else {
             this.speed = 0;
         }
 
+        // HORIZONTAL MV
+        this.x += this.speed;
+
+        if (this.x < 0) this.x = 0;
+        else if (this.x > this.gameWidth - this.width) this.x = this.gameWidth - this.width;
+
+        // VERTICAL MV
+        this.y += this.vy;
+        if (!this.onGround()){
+            this.vy += this.weight;
+        } else {
+            this.vy = 0;
+        }
+        if (this.y > this.gameHeight - this.height) {               // Keeps from going through a floor
+            this.y = this.gameHeight - this.height
+        }
     }
 
     draw(context){
         context.fillStyle = 'white'
         context.drawImage(this.image, this.frameX, this.frameY, this.width, this.height, this.x, this.y, this.width, this.height);
 
+    }
+
+    // UTILS
+    onGround(){
+        return this.y >= this.gameHeight - this.height;
     }
 
 }
