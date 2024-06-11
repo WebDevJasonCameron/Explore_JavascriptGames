@@ -26,8 +26,8 @@ class Player {
             this.speed = 5;
         } else if(input.keys.indexOf('ArrowLeft') > -1) {
             this.speed = -5;
-        } else if (input.keys.indexOf('ArrowUp') > -1) {
-            this.vy -= 5;
+        } else if (input.keys.indexOf('ArrowUp') > -1 && this.onGround()) {
+            this.vy -= 32;
         } else {
             this.speed = 0;
         }
@@ -40,11 +40,15 @@ class Player {
 
         // VERTICAL MV
         this.y += this.vy;
+
         if (!this.onGround()){
             this.vy += this.weight;
+            this.frameY = 1;
         } else {
             this.vy = 0;
+            this.frameY = 0;
         }
+
         if (this.y > this.gameHeight - this.height) {               // Keeps from going through a floor
             this.y = this.gameHeight - this.height
         }
