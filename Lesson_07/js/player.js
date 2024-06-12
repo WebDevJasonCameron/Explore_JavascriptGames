@@ -55,7 +55,6 @@ class Player {
     }
 
     draw(context){
-        context.fillStyle = 'white'
         context.drawImage(this.image, this.frameX, this.frameY, this.width, this.height, this.x, this.y, this.width, this.height);
 
     }
