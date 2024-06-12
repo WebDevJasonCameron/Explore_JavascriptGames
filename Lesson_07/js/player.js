@@ -43,7 +43,7 @@ class Player {
 
         if (!this.onGround()){
             this.vy += this.weight;
-            this.frameY = 1;
+            this.frameY = 200;
         } else {
             this.vy = 0;
             this.frameY = 0;
