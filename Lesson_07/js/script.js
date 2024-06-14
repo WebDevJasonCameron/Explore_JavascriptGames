@@ -17,11 +17,16 @@ window.addEventListener('load', () => {
     // BLD INSTANCES
     const input = new InputHandler()
     const player = new Player(canvas.width, canvas.height)
+    const background = new Background(canvas.width, canvas.height);
 
     function animate(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        player.draw(ctx)
-        player.update(input)
+
+        background.draw(ctx);
+        background.update();
+
+        player.draw(ctx);
+        player.update(input);
         requestAnimationFrame(animate);
     }
 
