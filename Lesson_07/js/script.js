@@ -18,6 +18,7 @@ window.addEventListener('load', () => {
     const input = new InputHandler()
     const player = new Player(canvas.width, canvas.height)
     const background = new Background(canvas.width, canvas.height);
+    const enemy1 = new Enemy(canvas.width, canvas.height);
 
     function animate(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -27,6 +28,10 @@ window.addEventListener('load', () => {
 
         player.draw(ctx);
         player.update(input);
+
+        enemy1.draw(ctx);
+
+
         requestAnimationFrame(animate);
     }
 
