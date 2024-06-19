@@ -18,9 +18,24 @@ class Enemy {
         this.frameInterval = 1000/this.fps;
 
         this.speed = 8;
+
+        this.markedForDeletion = false;
     }
 
     draw(context) {
+        context.strokeStyle = 'white'
+        context.strokeRect(this.x, this.y, this.width, this.height);
+
+        context.beginPath();
+        context.arc(
+            this.x + this.width/2,
+            this.y + this.height/2,
+            this.width/2,
+            0,
+            2 * Math.PI
+        );
+        context.stroke();
+
         context.drawImage(
             this.image,
             this.frameX * this.width,
@@ -43,6 +58,12 @@ class Enemy {
         }
 
         this.x -= this.speed;
+
+        if (this.x < 0 - this.width) {
+            this.markedForDeletion = true;
+            score++;
+            console.log(score)
+        }
     }
 }
 

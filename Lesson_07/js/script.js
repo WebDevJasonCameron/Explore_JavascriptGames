@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
     canvas.width = 800;
     canvas.height = 720;
 
+    score  = 0;
+
     let enemies = [];
 
     // Loading Classes from other js files
@@ -20,10 +22,17 @@ window.addEventListener('load', () => {
             enemy.draw(ctx);
             enemy.update(deltaTime);
         })
+
+        enemies = enemies.filter(enemy => !enemy.markedForDeletion);
     }
 
-    function displayStatusText(){
+    function displayStatusText(context){
+        context.font = '40px Helvetica';
+        context.fillStyle = 'black';
+        context.fillText('Score: ' + score, 20, 50)
 
+        context.fillStyle = 'white';
+        context.fillText('Score: ' + score, 22, 52)
     }
 
     // BLD INSTANCES
@@ -46,9 +55,11 @@ window.addEventListener('load', () => {
         background.update();
 
         player.draw(ctx);
-        player.update(input);
+        player.update(input, deltaTime, enemies);
 
         handleEnemies(deltaTime);
+
+        displayStatusText(ctx);
 
         requestAnimationFrame(animate);
     }

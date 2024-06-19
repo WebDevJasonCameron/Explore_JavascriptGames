@@ -13,6 +13,9 @@ class Player {
         this.frameX = 0;
         this.frameY = 0;
         this.maxFrame = 8;
+        this.frameTimer = 0;
+        this.fps = 20;
+        this.frameInterval = 1000/this.fps;
 
         this.speed = 0;
 
@@ -20,10 +23,46 @@ class Player {
         this.weight = 1;
     }
 
-    update(input){
+    draw(context){
+        context.strokeStyle = 'white'
+        context.strokeRect(this.x, this.y, this.width, this.height);
+
+        context.beginPath();
+        context.arc(
+                    this.x + this.width/2,
+                    this.y + this.height/2,
+                    this.width/2,
+                    0,
+                    2 * Math.PI
+        );
+        context.stroke();
+
+        context.drawImage(
+            this.image,
+            this.frameX * this.width,
+            this.frameY,
+            this.width,
+            this.height,
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        );
+
+    }
+
+    update(input, deltaTime, enemies){
         // ANIMATION
-        if (this.frameX >= this.maxFrame) this.frameX = 0;
-        else this.frameX++;
+        if (this.frameTimer > this.frameInterval){
+            if (this.frameX >= this.maxFrame) this.frameX = 0;
+            else this.frameX++;
+
+            this.frameTimer = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
+
+
 
         // KEYBOARD
         if (input.keys.indexOf('ArrowRight') > - 1){
@@ -47,30 +86,17 @@ class Player {
 
         if (!this.onGround()){
             this.vy += this.weight;
+            this.maxFrame = 5;
             this.frameY = 200;
         } else {
             this.vy = 0;
+            this.maxFrame = 8;
             this.frameY = 0;
         }
 
         if (this.y > this.gameHeight - this.height) {               // Keeps from going through a floor
             this.y = this.gameHeight - this.height
         }
-    }
-
-    draw(context){
-        context.drawImage(
-                            this.image,
-                            this.frameX * this.width,
-                            this.frameY,
-                            this.width,
-                            this.height,
-                            this.x,
-                            this.y,
-                            this.width,
-                            this.height
-        );
-
     }
 
     // UTILS
