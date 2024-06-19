@@ -12,6 +12,7 @@ class Player {
         this.image = document.getElementById('player')
         this.frameX = 0;
         this.frameY = 0;
+        this.maxFrame = 8;
 
         this.speed = 0;
 
@@ -20,6 +21,9 @@ class Player {
     }
 
     update(input){
+        // ANIMATION
+        if (this.frameX >= this.maxFrame) this.frameX = 0;
+        else this.frameX++;
 
         // KEYBOARD
         if (input.keys.indexOf('ArrowRight') > - 1){
@@ -55,7 +59,17 @@ class Player {
     }
 
     draw(context){
-        context.drawImage(this.image, this.frameX, this.frameY, this.width, this.height, this.x, this.y, this.width, this.height);
+        context.drawImage(
+                            this.image,
+                            this.frameX * this.width,
+                            this.frameY,
+                            this.width,
+                            this.height,
+                            this.x,
+                            this.y,
+                            this.width,
+                            this.height
+        );
 
     }
 

@@ -12,6 +12,12 @@ class Enemy {
         this.y = this.gameHeight - this.height;
 
         this.frameX = 0;
+        this.maxFrame = 5;
+        this.fps = 20;
+        this.frameTimer = 0;
+        this.frameInterval = 1000/this.fps;
+
+        this.speed = 8;
     }
 
     draw(context) {
@@ -27,8 +33,16 @@ class Enemy {
             this.height);
     }
 
-    update(){
-        this.x--;
+    update(deltaTime){
+        if (this.frameTimer > this.frameInterval){
+            if (this.frameX >= this.maxFrame) this.frameX = 0;
+            else this.frameX++;
+            this.frameTimer = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
+
+        this.x -= this.speed;
     }
 }
 

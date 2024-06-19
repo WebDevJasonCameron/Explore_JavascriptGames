@@ -7,10 +7,9 @@ window.addEventListener('load', () => {
     let enemies = [];
 
     // Loading Classes from other js files
-    //enemies.push(new Enemy(canvas.width, canvas.height));
 
     function handleEnemies(deltaTime){
-        if (enemyTimer > enemyInterval){
+        if (enemyTimer > enemyInterval + randomEnemyInterval){
             enemies.push(new Enemy(canvas.width, canvas.height));
             enemyTimer = 0;
         } else {
@@ -19,7 +18,7 @@ window.addEventListener('load', () => {
 
         enemies.forEach(enemy => {
             enemy.draw(ctx);
-            enemy.update();
+            enemy.update(deltaTime);
         })
     }
 
@@ -35,6 +34,7 @@ window.addEventListener('load', () => {
     let lastTime = 0;
     let enemyTimer = 0;
     let enemyInterval = 1000;
+    let randomEnemyInterval = Math.random() * 1000 + 500
 
     function animate(timeStamp){
         const deltaTime = timeStamp - lastTime;
