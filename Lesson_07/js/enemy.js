@@ -61,8 +61,8 @@ class Enemy {
 
         if (this.x < 0 - this.width) {
             this.markedForDeletion = true;
-            score++;
-            console.log(score)
+            //score++;
+            //console.log(score)
         }
     }
 }

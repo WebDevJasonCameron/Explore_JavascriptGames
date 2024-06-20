@@ -4,7 +4,8 @@ window.addEventListener('load', () => {
     canvas.width = 800;
     canvas.height = 720;
 
-    score  = 0;
+    let score  = 0;
+    let gameOver = false;
 
     let enemies = [];
 
@@ -30,9 +31,18 @@ window.addEventListener('load', () => {
         context.font = '40px Helvetica';
         context.fillStyle = 'black';
         context.fillText('Score: ' + score, 20, 50)
-
         context.fillStyle = 'white';
         context.fillText('Score: ' + score, 22, 52)
+
+        if (gameOver) {
+            context.textAlign = 'center';
+            context.fillStyle = 'black';
+            context.fillText('GAME OVER, try again!', canvas.width / 2, 200);
+
+            context.fillStyle = 'white';
+            context.fillText('GAME OVER, try again!', canvas.width / 2 + 2, 202);
+            console.log('test')
+        }
     }
 
     // BLD INSTANCES
@@ -55,13 +65,13 @@ window.addEventListener('load', () => {
         background.update();
 
         player.draw(ctx);
-        player.update(input, deltaTime, enemies);
+        player.update(input, deltaTime, enemies, gameOver, score);
 
         handleEnemies(deltaTime);
 
         displayStatusText(ctx);
 
-        requestAnimationFrame(animate);
+        if (!gameOver) requestAnimationFrame(animate);
     }
 
     animate(0)

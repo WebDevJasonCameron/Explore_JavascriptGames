@@ -52,6 +52,17 @@ class Player {
     }
 
     update(input, deltaTime, enemies){
+        // COLLISION
+        enemies.forEach(enemy => {
+            const dx = enemy.x - this.x;
+            const dy = enemy.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < enemy.width/2 + this.width/2){
+                //gameOver = true;
+            }
+        })
+
         // ANIMATION
         if (this.frameTimer > this.frameInterval){
             if (this.frameX >= this.maxFrame) this.frameX = 0;
