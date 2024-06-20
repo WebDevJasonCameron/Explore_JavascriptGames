@@ -28,6 +28,8 @@ window.addEventListener('load', () => {
     }
 
     function displayStatusText(context){
+        score = 0
+
         context.font = '40px Helvetica';
         context.fillStyle = 'black';
         context.fillText('Score: ' + score, 20, 50)
@@ -65,7 +67,7 @@ window.addEventListener('load', () => {
         background.update();
 
         player.draw(ctx);
-        player.update(input, deltaTime, enemies, gameOver, score);
+        player.update(input, deltaTime, enemies, gameOver);
 
         handleEnemies(deltaTime);
 

@@ -1,3 +1,4 @@
+
 class Enemy {
     constructor(gameWidth, gameHeight) {
         this.gameWidth = gameWidth;
@@ -20,6 +21,8 @@ class Enemy {
         this.speed = 8;
 
         this.markedForDeletion = false;
+
+        this.pointsToAdd = 0;
     }
 
     draw(context) {
@@ -61,9 +64,8 @@ class Enemy {
 
         if (this.x < 0 - this.width) {
             this.markedForDeletion = true;
-            //score++;
+            this.pointsToAdd++;
             //console.log(score)
         }
     }
 }
-
