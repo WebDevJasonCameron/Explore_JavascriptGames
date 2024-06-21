@@ -21,15 +21,13 @@ window.addEventListener('load', () => {
 
         enemies.forEach(enemy => {
             enemy.draw(ctx);
-            enemy.update(deltaTime);
+            score = enemy.update(deltaTime, score);
         })
 
         enemies = enemies.filter(enemy => !enemy.markedForDeletion);
     }
 
     function displayStatusText(context){
-        score = 0
-
         context.font = '40px Helvetica';
         context.fillStyle = 'black';
         context.fillText('Score: ' + score, 20, 50)
@@ -43,7 +41,6 @@ window.addEventListener('load', () => {
 
             context.fillStyle = 'white';
             context.fillText('GAME OVER, try again!', canvas.width / 2 + 2, 202);
-            console.log('test')
         }
     }
 
