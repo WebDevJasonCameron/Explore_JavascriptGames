@@ -23,7 +23,8 @@ window.addEventListener('load', function() {
 
         player.update(input.lastKey)
         player.draw(ctx);
-        drawStatusText(ctx, input)
+
+        drawStatusText(ctx, input, player)
         requestAnimationFrame(animate)
     }
 
