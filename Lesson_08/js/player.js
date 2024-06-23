@@ -1,9 +1,12 @@
+import { StandingLeft, StandingRight } from './state.js'
+
+
 export default class Player{
     constructor(gameWidth, gameHeight) {
         this.gameWidth = gameWidth;                                 // Canvas or "stage"
         this.gameHeight = gameHeight;
 
-        this.states = [];                                           // Player state
+        this.states = [new StandingLeft(this), new StandingRight(this)];                                           // Player state
         this.currentState = this.states[0];
 
         this.image = document.getElementById('dog-image')           // Image Sheet Location
@@ -28,7 +31,16 @@ export default class Player{
             this.width,
             this.height
         );
+    };
+
+    update(input){
+        this.currentState.handleInput(input)
     }
 
-}
+    setState(state){
+        this.currentState = this.states[state];
+        this.currentState.enter();
+    };
+
+};
 

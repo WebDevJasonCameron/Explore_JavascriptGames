@@ -5,7 +5,7 @@ export default class InputHandler {
         window.addEventListener('keydown', (e) => {
             switch (e.key){
                 case "ArrowLeft":
-                    this.lastKey = "PRESS left";
+                    this.lastKey = "PRESS Left";
                     break
                 case "ArrowRight":
                     this.lastKey = "PRESS Right";
