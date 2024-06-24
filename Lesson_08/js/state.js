@@ -13,7 +13,7 @@ class State {                                               // PARENT
 
 export class StandingLeft extends State {                          // CHILDREN
     constructor(player){
-        super('STANDING_LEFT');
+        super('STANDING LEFT');
         this.player = player;
     }
     enter() {
@@ -21,14 +21,14 @@ export class StandingLeft extends State {                          // CHILDREN
     }
 
     handleInput(input) {
-        if (input === 'PRESS Right') this.player.setState(states.STANDING_RIGHT);
-        else if (input === 'PRESS Down') this.player.setState(states.SITTING_LEFT);
+        if (input === 'PRESS right') this.player.setState(states.STANDING_RIGHT);
+        else if (input === 'PRESS down') this.player.setState(states.SITTING_LEFT);
     }
 }
 
 export class StandingRight extends State {
     constructor(player){
-        super('STANDING_Right');
+        super('STANDING RIGHT');
         this.player = player;
     }
     enter() {
@@ -36,14 +36,14 @@ export class StandingRight extends State {
     }
 
     handleInput(input) {
-        if (input === 'PRESS Left') this.player.setState(states.STANDING_LEFT);
-        else if (input === 'PRESS Down') this.player.setState(states.SITTING_RIGHT);
+        if (input === 'PRESS left') this.player.setState(states.STANDING_LEFT);
+        else if (input === 'PRESS down') this.player.setState(states.SITTING_RIGHT);
     }
 }
 
 export class SittingLeft extends State {
     constructor(player){
-        super('SITTING_LEFT');
+        super('SITTING LEFT');
         this.player = player;
     }
     enter() {
@@ -51,14 +51,14 @@ export class SittingLeft extends State {
     }
 
     handleInput(input) {
-        if (input === 'PRESS Left') this.player.setState(states.SITTING_RIGHT);
-        else if(input === 'PRESS UP') this.player.setState(states.STANDING_LEFT)
+        if (input === 'PRESS left') this.player.setState(states.SITTING_RIGHT);
+        else if(input === 'PRESS up') this.player.setState(states.STANDING_LEFT)
     }
 }
 
 export class SittingRight extends State {                          // CHILDREN
     constructor(player){
-        super('SITTING_RIGHT');
+        super('SITTING RIGHT');
         this.player = player;
     }
     enter() {
@@ -66,7 +66,7 @@ export class SittingRight extends State {                          // CHILDREN
     }
 
     handleInput(input) {
-        if (input === 'PRESS Left') this.player.setState(states.SITTING_LEFT);
-        else if(input === 'PRESS UP') this.player.setState(states.STANDING_RIGHT)
+        if (input === 'PRESS left') this.player.setState(states.SITTING_LEFT);
+        else if(input === 'PRESS up') this.player.setState(states.STANDING_RIGHT)
     }
 }
