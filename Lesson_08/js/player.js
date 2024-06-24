@@ -1,4 +1,4 @@
-import { StandingLeft, StandingRight } from './state.js'
+import { StandingLeft, StandingRight, SittingLeft, SittingRight  } from './state.js'
 
 
 export default class Player{
@@ -6,8 +6,13 @@ export default class Player{
         this.gameWidth = gameWidth;                                 // Canvas or "stage"
         this.gameHeight = gameHeight;
 
-        this.states = [new StandingLeft(this), new StandingRight(this)];                                           // Player state
-        this.currentState = this.states[0];
+        this.states = [                                             // Player state
+                        new StandingLeft(this),
+                        new StandingRight(this),
+                        new SittingLeft(),
+                        new StandingRight()
+        ];
+        this.currentState = this.states[1];
 
         this.image = document.getElementById('dog-image')           // Image Sheet Location
         this.width = 200;
