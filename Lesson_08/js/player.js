@@ -10,7 +10,7 @@ export default class Player{
                         new StandingLeft(this),
                         new StandingRight(this),
                         new SittingLeft(this),
-                        new StandingRight(this)
+                        new SittingRight(this)
         ];
         this.currentState = this.states[1];
 
