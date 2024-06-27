@@ -19,3 +19,5 @@ In VSC you can do this with Live Server application (plugin).
 ```javascript
 import Player from "./player.js";
 ```
+
+1. Instructor explains a lot of what is happening during 6:35:00 and 6:40:00.  It is hard to follow so I want to go back over it later
