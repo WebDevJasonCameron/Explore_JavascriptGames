@@ -23,7 +23,7 @@ export class StandingLeft extends State {                          // CHILDREN
     }
 
     handleInput(input) {
-        if (input === 'PRESS right') this.player.setState(states.STANDING_RIGHT);
+        if (input === 'PRESS right') this.player.setState(states.RUNNING_RIGHT);
         else if (input === 'PRESS down') this.player.setState(states.SITTING_LEFT);
     }
 }
@@ -38,7 +38,7 @@ export class StandingRight extends State {
     }
 
     handleInput(input) {
-        if (input === 'PRESS left') this.player.setState(states.STANDING_LEFT);
+        if (input === 'PRESS left') this.player.setState(states.RUNNING_LEFT);
         else if (input === 'PRESS down') this.player.setState(states.SITTING_RIGHT);
     }
 }
