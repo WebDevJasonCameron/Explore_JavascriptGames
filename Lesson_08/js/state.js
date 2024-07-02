@@ -20,10 +20,12 @@ export class StandingLeft extends State {                          // CHILDREN
     }
     enter() {
         this.player.frameY = 1;
+        this.player.speed = 0;
     }
 
     handleInput(input) {
         if (input === 'PRESS right') this.player.setState(states.RUNNING_RIGHT);
+        else if (input === 'PRESS left') this.player.setState(states.RUNNING_LEFT)
         else if (input === 'PRESS down') this.player.setState(states.SITTING_LEFT);
     }
 }
@@ -35,10 +37,12 @@ export class StandingRight extends State {
     }
     enter() {
         this.player.frameY = 0;
+        this.player.speed = 0;
     }
 
     handleInput(input) {
         if (input === 'PRESS left') this.player.setState(states.RUNNING_LEFT);
+        else if (input === 'PRESS right') this.player.setState(states.RUNNING_RIGHT)
         else if (input === 'PRESS down') this.player.setState(states.SITTING_RIGHT);
     }
 }
@@ -50,6 +54,7 @@ export class SittingLeft extends State {
     }
     enter() {
         this.player.frameY = 9;
+        this.player.speed = 0;
     }
 
     handleInput(input) {
@@ -65,6 +70,7 @@ export class SittingRight extends State {
     }
     enter() {
         this.player.frameY = 8;
+        this.player.speed = 0;
     }
 
     handleInput(input) {
@@ -81,6 +87,7 @@ export class RunningLeft extends State {
     }
     enter() {
         this.player.frameY = 7;
+        this.player.speed = -this.player.maxSpeed;
     }
 
     handleInput(input) {
@@ -97,7 +104,8 @@ export class RunningRight extends State {
         this.player = player;
     }
     enter() {
-        this.player.frameY = 8;
+        this.player.frameY = 6;
+        this.player.speed = this.player.maxSpeed;
     }
 
     handleInput(input) {
