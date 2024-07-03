@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
     const ctx = canvas.getContext('2d');
 
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight - 50;
 
 
     const player = new Player(canvas.width, canvas.height);

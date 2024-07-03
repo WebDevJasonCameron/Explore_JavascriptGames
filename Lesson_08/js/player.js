@@ -1,4 +1,12 @@
-import { StandingLeft, StandingRight, SittingLeft, SittingRight, RunningLeft, RunningRight  } from './state.js'
+import { StandingLeft,
+    StandingRight,
+    SittingLeft,
+    SittingRight,
+    RunningLeft,
+    RunningRight,
+    JumpingLeft,
+    JumpingRight,
+} from './state.js'
 
 
 export default class Player{
@@ -13,6 +21,8 @@ export default class Player{
                         new SittingRight(this),
                         new RunningLeft(this),
                         new RunningRight(this),
+                        new JumpingLeft(this),
+                        new JumpingRight(this),
         ];
         this.currentState = this.states[1];
 
@@ -22,6 +32,10 @@ export default class Player{
 
         this.x = this.gameWidth / 2 - this.width / 2;               // Canvas location
         this.y = this.gameHeight - this.height;
+
+        this.vy = 0                                                 // vy = vertical movement
+        this.weight = 0.5;
+
         this.frameX = 0;
         this.frameY = 0;
 
@@ -47,8 +61,16 @@ export default class Player{
         this.currentState.handleInput(input)
         this.x += this.speed;
 
+        // horizontal movement
         if (this.x <= 0) this.x = 0;
         else if (this.x >= this.gameWidth - this.width) this.x = this.gameWidth - this.width;
+
+        // vertical movement
+        if (this.y < this.gameHeight - this.height){
+            this.vy += this.weight;
+        } else {
+            this.vy = 0;
+        }
     }
 
     setState(state) {
