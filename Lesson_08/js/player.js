@@ -66,7 +66,8 @@ export default class Player{
         else if (this.x >= this.gameWidth - this.width) this.x = this.gameWidth - this.width;
 
         // vertical movement
-        if (this.y < this.gameHeight - this.height){
+        this.y += this.vy;
+        if (!this.onGround()){
             this.vy += this.weight;
         } else {
             this.vy = 0;
@@ -76,6 +77,11 @@ export default class Player{
     setState(state) {
         this.currentState = this.states[state]
         this.currentState.enter()
+    }
+
+    // Utility Function
+    onGround() {
+        return this.y >= this.gameHeight - this.height;
     }
 
 };
