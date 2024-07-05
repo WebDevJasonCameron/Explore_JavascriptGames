@@ -6,6 +6,8 @@ import { StandingLeft,
     RunningRight,
     JumpingLeft,
     JumpingRight,
+    FallingLeft,
+    FallingRight,
 } from './state.js'
 
 
@@ -23,6 +25,8 @@ export default class Player{
                         new RunningRight(this),
                         new JumpingLeft(this),
                         new JumpingRight(this),
+                        new FallingLeft(this),
+                        new FallingRight(this),
         ];
         this.currentState = this.states[1];
 
@@ -72,6 +76,9 @@ export default class Player{
         } else {
             this.vy = 0;
         }
+
+        // don't fall through the floor
+        if (this.y > this.gameHeight -this.height) this.y = this.gameHeight - this.height;
     }
 
     setState(state) {
