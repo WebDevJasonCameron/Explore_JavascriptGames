@@ -1,3 +1,6 @@
+import {Sitting, Running, Jumping, Falling} from "./playerStates.js";
+
+
 export default class Player {
     constructor(game) {
         this.game = game;                                       // Relation to the Game
@@ -11,18 +14,27 @@ export default class Player {
         this.weight = 1;
 
         this.image = document.getElementById('player');         // Image mapping
+        this.frameX = 0;
+        this.frameY = 0;
 
         this.speed = 0;                                         // Movement
         this.maxSpeed = 10;
 
-        this.states = [];                                       // Player state mng
+        this.states = [                                         // Player state mng
+            new Sitting(this),
+            new Running(this),
+            new Jumping(this),
+            new Falling(this),
+        ];
         this.currentState = this.states[0];
         this.currentState.enter();
     }
 
     update(input) {
+        // Input mng
+        this.currentState.handleInput(input)
 
-        // Movement
+        // Horizontal Movement
         this.x += this.speed;
 
         if (input.includes('ArrowRight')) this.speed = this.maxSpeed;
@@ -33,8 +45,7 @@ export default class Player {
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
 
-        // Vertical
-        if (input.includes('ArrowUp') && this.onGround()) this.vy -= 20;
+        // Vertical Movement
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0
@@ -43,8 +54,8 @@ export default class Player {
     draw(context) {
         context.drawImage(
                             this.image,
-                            0,
-                            0,
+                            this.frameX * this.width,
+                            this.frameY * this.height,
                             this.width,
                             this.height,
                             this.x,
@@ -56,6 +67,11 @@ export default class Player {
 
     onGround(){
         return this.y >= this.game.height - this.height
+    }
+
+    setState(state){
+        this.currentState = this.states[state]
+        this.currentState.enter();
     }
 
 }
