@@ -8,7 +8,7 @@ export default class Player {
         this.height = 91.3;
 
         this.x = 0;                                             // Placement on game
-        this.y = this.game.height - this.height;
+        this.y = this.game.height - this.height - this.game.groundMargin;
 
         this.vy = 0;                                            // Vertical movement
         this.weight = 1;
@@ -82,11 +82,12 @@ export default class Player {
     }
 
     onGround(){
-        return this.y >= this.game.height - this.height
+        return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
 
-    setState(state){
+    setState(state, speed){
         this.currentState = this.states[state]
+        this.game.speed = this.game.maxSpeed * speed;
         this.currentState.enter();
     }
 
