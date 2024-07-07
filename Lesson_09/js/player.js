@@ -16,6 +16,10 @@ export default class Player {
         this.image = document.getElementById('player');         // Image mapping
         this.frameX = 0;
         this.frameY = 0;
+        this.maxFrame;
+        this.fps = 20;
+        this.frameInterfal = 1000/this.fps
+        this.frameTimer = 0;
 
         this.speed = 0;                                         // Movement
         this.maxSpeed = 10;
@@ -30,7 +34,7 @@ export default class Player {
         this.currentState.enter();
     }
 
-    update(input) {
+    update(input, deltaTime) {
         // Input mng
         this.currentState.handleInput(input)
 
@@ -49,6 +53,18 @@ export default class Player {
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0
+
+        // Sprite Animation
+        if (this.frameTimer > this.frameInterfal) {
+            this.frameTimer = 0;
+
+            if (this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
+
+
     }
 
     draw(context) {
