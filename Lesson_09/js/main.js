@@ -1,6 +1,8 @@
 import Player  from "./Player.js";
 import InputHandler from "./Input.js";
-import {Background} from "./background.js";
+import { Background } from "./background.js";
+
+import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from "./enemies.js";
 
 window.addEventListener('load', function() {
     const loading = document.getElementById('loading');
@@ -16,8 +18,13 @@ window.addEventListener('load', function() {
             this.width = width;
             this.height = height;
             this.groundMargin = 50;
+
             this.speed = 0;
-            this.maxSpeed = 3
+            this.maxSpeed = 3;
+
+            this.enemies = [];
+            this.enemyTimer = 0;
+            this.enemyInterval = 1000;
 
             // OBJs
             this.background = new Background(this)
@@ -29,11 +36,24 @@ window.addEventListener('load', function() {
         update(deltaTime) {
             this.background.update()
             this.player.update(this.input.keys, deltaTime)
+
+            // Handle Enemies
+            if (this.enemyTimer > this.enemyInterval) {
+                this.addEnemy();
+                this.enemyTimer = 0;
+            } else {
+                this.enemyTimer += deltaTime;
+            }
         }
 
         draw(context){
             this.background.draw(context);
             this.player.draw(context);
+        }
+
+        addEnemy(){
+            this.enemies.push(new FlyingEnemy(this))
+            console.log(this.enemies)
         }
     }
 
