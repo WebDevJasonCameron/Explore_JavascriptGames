@@ -6,11 +6,12 @@ class Enemy {
         this.fps = 20;
         this.frameInterval =  1000/this.fps;
         this.frameTimer = 0;
+        this.markedForDeletion = false;
     }
 
     update(deltaTime) {
         // Movement
-        this.x += this.speedX;
+        this.x -= this.speedX;
         this.y += this.speedY;
 
         if (this.frameTimer > this.frameInterval) {
@@ -20,6 +21,9 @@ class Enemy {
         } else {
             this.frameTimer += deltaTime;
         }
+
+        // Offscreen Check
+        if (this.x + this.width < 0) this.markedForDeletion = true;
     }
 
     draw(context) {
@@ -44,9 +48,10 @@ export class FlyingEnemy extends Enemy {
         this.game = game;
         this.width = 60;
         this.height = 44;
-        this.x = 200;
-        this.y = 200;
-        this.speedX = 2;
+        this.x = this.game.width + Math.random() * 0.5;
+        this.y = Math.random() * this.game.height * 0.5;
+        this.speedX = Math.random() + 1;
+        this.speedY = 0;
         this.maxFrame = 5;
         this.image = document.getElementById('enemy-fly')
     }
