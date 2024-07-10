@@ -26,10 +26,12 @@ window.addEventListener('load', function() {
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
 
+            this.debug = true;
+
             // OBJs
             this.background = new Background(this)
             this.player = new Player(this);
-            this.input = new InputHandler();
+            this.input = new InputHandler(this);
 
         }
 
@@ -65,7 +67,6 @@ window.addEventListener('load', function() {
             else if (this.speed > 0) this.enemies.push(new ClimbingEnemy(this))
 
             this.enemies.push(new FlyingEnemy(this))
-            console.log(this.enemies)
         }
     }
 
