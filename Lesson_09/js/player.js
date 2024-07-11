@@ -35,8 +35,11 @@ export default class Player {
     }
 
     update(input, deltaTime) {
+        // Collision detection
+        this.checkCollision();
+
         // Input mng
-        this.currentState.handleInput(input)
+        this.currentState.handleInput(input);
 
         // Horizontal Movement
         this.x += this.speed;
@@ -52,7 +55,7 @@ export default class Player {
         // Vertical Movement
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
-        else this.vy = 0
+        else this.vy = 0;
 
         // Sprite Animation
         if (this.frameTimer > this.frameInterfal) {
@@ -86,9 +89,25 @@ export default class Player {
     }
 
     setState(state, speed){
-        this.currentState = this.states[state]
+        this.currentState = this.states[state];
         this.game.speed = this.game.maxSpeed * speed;
         this.currentState.enter();
+    }
+
+    checkCollision() {
+        this.game.enemies.forEach(enemy => {
+            if (
+                enemy.x < this.x + this.width &&
+                enemy.x + enemy.width > this.x &&
+                enemy.y < this.y + this.height &&
+                enemy.y + enemy.height > this.y
+            ) {
+                enemy.markedForDeletion = true;
+                this.game.score++;
+            } else {
+
+            }
+        })
     }
 
 }

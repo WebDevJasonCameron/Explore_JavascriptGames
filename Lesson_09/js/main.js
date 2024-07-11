@@ -22,6 +22,8 @@ window.addEventListener('load', function() {
             this.speed = 0;
             this.maxSpeed = 3;
 
+            this.score = 0;
+
             this.enemies = [];
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
