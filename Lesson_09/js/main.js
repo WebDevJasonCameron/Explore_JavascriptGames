@@ -1,7 +1,7 @@
 import Player  from "./Player.js";
 import InputHandler from "./Input.js";
+import { UI } from "./ui.js";
 import { Background } from "./background.js";
-
 import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from "./enemies.js";
 
 window.addEventListener('load', function() {
@@ -22,7 +22,9 @@ window.addEventListener('load', function() {
             this.speed = 0;
             this.maxSpeed = 3;
 
+            this.UI = new UI(this);
             this.score = 0;
+            this.fontColor = 'black'
 
             this.enemies = [];
             this.enemyTimer = 0;
@@ -62,6 +64,7 @@ window.addEventListener('load', function() {
             this.enemies.forEach(enemy => {
                 enemy.draw(context)
             })
+            this.UI.draw(context);
         }
 
         addEnemy(){
