@@ -9,7 +9,7 @@ export default class Game {
     }
 
     update(deltaTime) {
-
+        this.grid.update(deltaTime)
     }
 
     draw(context) {
