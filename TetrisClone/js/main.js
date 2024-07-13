@@ -1,6 +1,6 @@
 import Game from './game.js';
 
-window.addEventListener('load', function() {                                              // Ensure Page is Loaded
+window.addEventListener('load', function() {
     const loading = document.getElementById('loading');
     loading.style.display = 'none';
 
