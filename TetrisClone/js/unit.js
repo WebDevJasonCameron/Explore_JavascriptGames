@@ -20,9 +20,14 @@ export default class Unit {
         // movement
         if (this.blockSpeed < this.blockBreakSpeed) this.blockSpeed += deltaTime;
         else {
-            this.blockSpeed = 0;
+            if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                this.blockSpeed = 0;
+                this.gridY += 1;
+            } else {
+                // merge unit and grid
+                // start new block
 
-            if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) this.gridY += 1;
+            }
         }
 
     }
