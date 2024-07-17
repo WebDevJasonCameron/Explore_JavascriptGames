@@ -1,3 +1,5 @@
+import InputHandler from './input.js';
+
 export default class Unit {
     constructor(game, unitType) {
         this.game = game;
@@ -12,24 +14,50 @@ export default class Unit {
         this.blockBreakSpeed = 500;
 
         this.matrix = this.createUnit(unitType);
+        this.bounds = this.getUnitBounds(this.matrix)
+        this.left = this.bounds[0] + 1;
+        this.right = this.bounds[1] + 1;
+        this.bottom = this.bounds[2] + 1;
+
+        this.input = new InputHandler(this.game);
     }
 
     update(deltaTime) {
         // shift unit
 
         // movement
-        if (this.blockSpeed < this.blockBreakSpeed) this.blockSpeed += deltaTime;
-        else {
+        if (this.blockSpeed < this.blockBreakSpeed) {
+            this.blockSpeed += deltaTime;
+
+        } else {
             if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                // move by input
+                if (this.input.keys.indexOf('ArrowRight') !== -1) {
+                    this.gridX += 1
+                    this.input.keys = []
+                    console.log('Right')
+                }
+                if (this.input.keys.indexOf('ArrowLeft') !== -1) {
+                    this.gridX -= 1
+                    this.input.keys = []
+                    console.log('Left')
+                }
+                if (this.input.keys.indexOf('ArrowDown') !== -1) {
+                    this.gridY += 1
+                    this.input.keys = []
+                    console.log('Down')
+                }
+
+                // move down
                 this.blockSpeed = 0;
                 this.gridY += 1;
+
             } else {
                 // merge unit and grid
                 // start new block
 
             }
         }
-
     }
 
     draw(context) {
@@ -110,27 +138,28 @@ export default class Unit {
         }
     }
 
-    checkOutOfBounds(grid, unit) {
 
-        let breakOutFlag = false
+    getUnitBounds(matrix) {
+        let left = 0;
+        let right = 0;
+        let bottom = 0
 
-        for (let i = 0; i < unit.matrix.length; i++)
-
-            if (breakOutFlag) return true;
-            else {
-                for (let j = 0; j < unit.matrix[i].length; j++) {
-
-                    if (unit.matrix[i][j] === 1){
-                        console.log('Found 1 in: ', unit.matrix[i], unit.matrix[i][j], ' checking...')
-
-                        if (unit.gridY + 1 + unit.matrix[i].length <= grid.matrix.length) {
-                            console.log('Yes, out of bounds with', unit.matrix[i][j])
-                            breakOutFlag = false
-                        }
-                        else breakOutFlag = true
-                    }
+        for (let i = 0; i < matrix.length; i++) {
+            for (let j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] === 1) {
+                    if (j < left) left = j;
+                    if (j > right) right = j;
+                    if (i > bottom) bottom = i;
                 }
             }
-
         }
+        return [left, right, bottom]
     }
+
+
+    checkOutOfBounds(grid, unit) {
+        return !(unit.gridY + 1 + unit.bottom <= grid.matrix.length ||
+            unit.gridX + unit.left <= 0 ||
+            unit.gridX + unit.right >= grid.matrix[0].length);
+    }
+}
