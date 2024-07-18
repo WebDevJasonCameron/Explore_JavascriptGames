@@ -30,20 +30,32 @@ export default class Unit {
             this.blockSpeed += deltaTime;
 
         } else {
-            if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+            if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) { // need to add future check
                 // move by input
                 if (this.input.keys.indexOf('ArrowRight') !== -1) {
-                    this.gridX += 1
+                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                        console.log('right: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
+                        this.game.unit.gridX += 1
+                        console.log('grid X at: ', this.game.unit.gridX)
+                    }
                     this.input.keys = []
                     console.log('Right')
                 }
                 if (this.input.keys.indexOf('ArrowLeft') !== -1) {
-                    this.gridX -= 1
+                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                        console.log('left: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
+                        this.game.unit.gridX -= 1
+                        console.log('X at: ', this.game.unit.gridX)
+                    }
                     this.input.keys = []
                     console.log('Left')
                 }
                 if (this.input.keys.indexOf('ArrowDown') !== -1) {
-                    this.gridY += 1
+                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                        console.log('down: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
+                        this.game.unit.gridY += 1
+                        console.log('Y at: ', this.game.unit.gridY)
+                    }
                     this.input.keys = []
                     console.log('Down')
                 }
@@ -158,8 +170,9 @@ export default class Unit {
 
 
     checkOutOfBounds(grid, unit) {
-        return !(unit.gridY + 1 + unit.bottom <= grid.matrix.length ||
-            unit.gridX + unit.left <= 0 ||
-            unit.gridX + unit.right >= grid.matrix[0].length);
+        return !(   unit.gridY + 1 + unit.bottom <= grid.matrix.length ||
+                    (unit.gridX + unit.left) <= 0 ||
+                    (unit.gridX + unit.right) >= 10
+        );
     }
 }
