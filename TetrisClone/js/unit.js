@@ -33,16 +33,14 @@ export default class Unit {
             if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) { // need to add future check
                 // move by input
                 if (this.input.keys.indexOf('ArrowRight') !== -1) {
-                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
-                        console.log('right: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
+                    if (!(this.game.unit.gridX + this.game.unit.right >= 10)) {
                         this.game.unit.gridX += 1
-                        console.log('grid X at: ', this.game.unit.gridX)
                     }
                     this.input.keys = []
                     console.log('Right')
                 }
                 if (this.input.keys.indexOf('ArrowLeft') !== -1) {
-                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                    if (!(this.game.unit.gridX + this.game.unit.left - 1 <= 0)) {
                         console.log('left: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
                         this.game.unit.gridX -= 1
                         console.log('X at: ', this.game.unit.gridX)
@@ -51,7 +49,7 @@ export default class Unit {
                     console.log('Left')
                 }
                 if (this.input.keys.indexOf('ArrowDown') !== -1) {
-                    if (!this.checkOutOfBounds(this.game.grid, this.game.unit)) {
+                    if (!(this.game.unit.gridY + this.game.unit.bottom + 1 <= 10)) {
                         console.log('down: ', !this.checkOutOfBounds(this.game.grid, this.game.unit))
                         this.game.unit.gridY += 1
                         console.log('Y at: ', this.game.unit.gridY)
