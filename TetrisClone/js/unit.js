@@ -40,7 +40,7 @@ export default class Unit {
 
             }
             if (this.input.keys.indexOf('ArrowLeft') !== -1) {
-                if (!(this.game.unit.gridX + this.game.unit.left - 1 <= 0)) {
+                if (!(this.game.unit.gridX + this.game.unit.left <= 0)) {
                     this.game.unit.gridX -= 1
                     this.input.keys = []
                 }
@@ -57,10 +57,12 @@ export default class Unit {
             this.blockSpeed = 0;
             this.gridY += 1;
 
+            console.log('unit X is: ', this.game.unit.gridX)
+            console.log('unit left is: ', this.game.unit.left)
+            console.log('unit X - left is: ', this.game.unit.gridX + this.game.unit.left)
+
         } else {
             // merge unit and grid
-            console.log("Start new unit")
-
         }
 
     }
