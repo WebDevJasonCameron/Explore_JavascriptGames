@@ -7,7 +7,7 @@ export default class Game {
         this.height = height;
 
         this.grid = new Grid(width, height);
-        this.unit = new Unit(this, 'J');
+        this.unit = new Unit(this, 'L');
 
     }
 

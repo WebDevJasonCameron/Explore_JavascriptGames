@@ -60,6 +60,7 @@ export default class Unit {
             console.log('unit X is: ', this.game.unit.gridX)
             console.log('unit left is: ', this.game.unit.left)
             console.log('unit X - left is: ', this.game.unit.gridX + this.game.unit.left)
+            console.log('------------------------------------')
 
         } else {
             // merge unit and grid
@@ -145,11 +146,10 @@ export default class Unit {
         }
     }
 
-
     getUnitBounds(matrix) {
-        let left = 0;
-        let right = 0;
-        let bottom = 0
+        let left = matrix[0].length; // Initialize to the maximum possible value
+        let right = 0; // Initialize to the minimum possible value
+        let bottom = 0; // Initialize to the minimum possible value
 
         for (let i = 0; i < matrix.length; i++) {
             for (let j = 0; j < matrix[i].length; j++) {
@@ -160,6 +160,10 @@ export default class Unit {
                 }
             }
         }
-        return [left, right, bottom]
+
+        // If no '1' was found, set left to 0
+        if (left === matrix[0].length) left = 0;
+
+        return [left, right, bottom];
     }
 }
