@@ -1,0 +1,52 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background: black;
+    color: #b4b8c2;
+}
+
+#modules {
+    margin-top: 20px;
+    position: relative;
+}
+
+.module {
+    border: 1px solid #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: move; /* Add cursor indication for draggable modules */
+    position: absolute; /* Enable absolute positioning for modules */
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.module-content {
+    margin-top: 10px;
+}
+
+.sub-module {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sub-module input[type="text"] {
+    margin-right: 10px;
+}
+
+.remove-button {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+.remove-button:hover {
+    background-color: darkred;
+}
