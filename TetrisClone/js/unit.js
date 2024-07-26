@@ -15,11 +15,13 @@ export default class Unit {
 
         this.matrix = this.createUnit(unitType);
         this.bounds = this.getUnitBounds(this.matrix)
-        this.left = this.bounds[0] + 1;
+        this.left = this.bounds[0];
         this.right = this.bounds[1] + 1;
         this.bottom = this.bounds[2] + 1;
 
         this.input = new InputHandler(this.game);
+
+        this.inPlay = true;
     }
 
     update(deltaTime) {
@@ -64,6 +66,9 @@ export default class Unit {
 
         } else {
             // merge unit and grid
+
+            // out of play
+            this.inPlay = false;
         }
 
     }
